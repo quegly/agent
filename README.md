@@ -19,7 +19,8 @@ and the connection to the MCP server at `https://api.quegly.com/mcp`.
 
 ## What you need
 
-A [Quegly](https://quegly.com) account with an active subscription, and an API key:
+A [Quegly](https://quegly.com) account with an active subscription. Claude connects by signing in with
+Quegly: no key to copy. Other agents use an API key:
 
 1. Open **Settings**, **API** (https://quegly.com/settings/api) and create a key. It starts with `qgl_`.
 2. Pick **Full access (all workspaces)**, or bind the key to one workspace.
@@ -28,6 +29,14 @@ Never paste your key into a chat. It goes in your agent's settings, as shown bel
 
 ## Install
 
+### Claude (claude.ai, Claude Desktop and the Claude apps)
+
+1. In Claude, open **Settings**, **Connectors** and choose **Add custom connector**.
+2. Name it Quegly and paste `https://api.quegly.com/mcp` as the URL.
+3. Press **Connect**. Quegly opens: sign in, pick one workspace or all of them, and press **Authorize**.
+
+Disconnect it any time in Quegly under **Settings**, **API**, **Connected apps**.
+
 ### Claude Code
 
 ```
@@ -35,7 +44,7 @@ Never paste your key into a chat. It goes in your agent's settings, as shown bel
 /plugin install quegly@quegly
 ```
 
-Claude Code asks for your API key when the plugin is enabled and keeps it in your system's secure storage.
+Then run `/mcp`, pick quegly and sign in with Quegly in the browser window that opens.
 
 ### Hermes Agent
 
@@ -60,8 +69,9 @@ untrusted.
 npx skills add quegly/agent --skill quegly
 ```
 
-Then connect the MCP server yourself: URL `https://api.quegly.com/mcp` (Streamable HTTP), with your key as
-the header `Authorization: Bearer <your key>`. In Claude Code:
+Then connect the MCP server yourself: URL `https://api.quegly.com/mcp` (Streamable HTTP). Clients that
+support MCP sign-in need nothing else; others send your key as the header `Authorization: Bearer <your key>`.
+In Claude Code with a key:
 
 ```
 claude mcp add --transport http quegly https://api.quegly.com/mcp --header "Authorization: Bearer <your key>"
@@ -79,13 +89,14 @@ Cursor, VS Code, Claude Desktop and other clients: see https://quegly.com/develo
 
 ## What this package does, and where data goes
 
-- Every tool call goes to Quegly's hosted server at `api.quegly.com` and acts on your Quegly account with your
-  API key. The tool list is served by that server, so it can grow without a new version of this package.
+- Every tool call goes to Quegly's hosted server at `api.quegly.com` and acts on your Quegly account, with
+  your sign-in or your API key. The tool list is served by that server, so it can grow without a new version of this package.
 - Some tools reach the public once you confirm: they publish or schedule posts to your connected social
   accounts, and delete scheduled posts, drafts and video covers.
 - The skill tells the agent to confirm each of those with you first and to treat text other people wrote
   (captions, comments) as data, never as instructions.
-- Your key is stored by your agent (Claude Code's secure storage or your Hermes profile). This package has no
+- Your sign-in or key is stored by your agent (Claude's connector settings, Claude Code's secure storage or
+  your Hermes profile). This package has no
   code of its own, runs nothing on your machine, and sends no telemetry.
 
 ## Links

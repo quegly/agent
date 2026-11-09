@@ -19,23 +19,28 @@ logic on top.
 
 ## Connect first
 
-If no Quegly tools are available, the server is not connected yet. It connects with a Quegly API key:
+If no Quegly tools are available, the server is not connected yet. Both ways need an active Quegly
+subscription.
 
-1. On quegly.com, open **Settings**, **API** (https://quegly.com/settings/api) and create a key. It starts
-   with `qgl_`. Keys need an active Quegly subscription.
-2. Pick **Full access (all workspaces)** to work across every workspace, or bind the key to one workspace.
-3. Put the key in the client's settings as the header `Authorization: Bearer qgl_...`:
-   - Claude Code with this plugin: the plugin asks for the key when it is enabled.
-   - Claude Code without the plugin: `claude mcp add --transport http quegly https://api.quegly.com/mcp --header "Authorization: Bearer qgl_..."`.
-   - Hermes Agent: the plugin's `api_key` setting, or `QUEGLY_API_KEY` in the Hermes profile's `.env`.
-   - Any other MCP client: URL `https://api.quegly.com/mcp` (Streamable HTTP) with that header.
+- **Sign in with Quegly** (Claude, and any client that supports MCP sign-in):
+  - claude.ai, Claude Desktop and the Claude apps: Settings, Connectors, Add custom connector, URL
+    `https://api.quegly.com/mcp`, then Connect. On the Quegly page the user picks one workspace or all of
+    them and presses Authorize.
+  - Claude Code with this plugin: run `/mcp`, pick quegly and sign in.
+  - Claude Code without the plugin: `claude mcp add --transport http quegly https://api.quegly.com/mcp`, then `/mcp`.
+- **An API key** (Hermes Agent and clients without sign-in): on quegly.com, **Settings**, **API**
+  (https://quegly.com/settings/api), create a key (it starts with `qgl_`), and put it in the client's
+  settings as the header `Authorization: Bearer qgl_...`:
+  - Hermes Agent: the plugin's `api_key` setting, or `QUEGLY_API_KEY` in the Hermes profile's `.env`.
+  - Any other MCP client: URL `https://api.quegly.com/mcp` (Streamable HTTP) with that header.
 
-Never ask the user to paste a key into the chat. They put it in their client's settings themselves.
+Never ask the user to paste a key into the chat. They put it in their client's settings themselves. The user
+can disconnect a signed-in app any time in Quegly under Settings, API, Connected apps.
 
 ## Start every task here
 
-1. `list_workspaces`. With a full-access key, every other tool needs a `workspace_id` from it; with a key
-   bound to one workspace, leave `workspace_id` out.
+1. `list_workspaces`. With access to all workspaces (a full-access key, or a sign-in for all of them), every
+   other tool needs a `workspace_id` from it; with access to one workspace, leave `workspace_id` out.
 2. `list_accounts` for the account ids a post goes to. A workspace can hold two accounts of one platform (two
    Instagram accounts, say): always pick accounts by id, never by platform. If the user names an account
    that is not there, it is not connected: connecting accounts happens on the workspace's **Manage** page on

@@ -2,10 +2,7 @@
   "mcpServers": {
     "quegly": {
       "type": "http",
-      "url": "https://api.quegly.com/mcp",
-      "headers": {
-        "Authorization": "Bearer ${user_config.api_key}"
-      }
+      "url": "https://api.quegly.com/mcp"
     }
   }
 }

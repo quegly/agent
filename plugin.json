@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "quegly",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Schedule, publish and measure social media posts from your AI agent with Quegly: Instagram, TikTok, YouTube, Facebook, X, Threads, LinkedIn, Bluesky, Pinterest and Telegram, from one post to every channel, plus post analytics.",
   "author": {
     "name": "Quegly",
