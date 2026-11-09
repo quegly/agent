@@ -1,0 +1,15 @@
+{
+  "name": "quegly",
+  "description": "Schedule, publish and measure social media posts from Claude.",
+  "owner": {
+    "name": "Quegly",
+    "url": "https://quegly.com"
+  },
+  "plugins": [
+    {
+      "name": "quegly",
+      "source": "./",
+      "description": "Schedule, publish and measure social media posts from your AI agent with Quegly: Instagram, TikTok, YouTube, Facebook, X, Threads, LinkedIn, Bluesky, Pinterest and Telegram, from one post to every channel, plus post analytics."
+    }
+  ]
+}

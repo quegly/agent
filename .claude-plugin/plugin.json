@@ -1,0 +1,23 @@
+{
+  "name": "quegly",
+  "displayName": "Quegly",
+  "version": "1.0.0",
+  "description": "Schedule, publish and measure social media posts from your AI agent with Quegly: Instagram, TikTok, YouTube, Facebook, X, Threads, LinkedIn, Bluesky, Pinterest and Telegram, from one post to every channel, plus post analytics.",
+  "author": {
+    "name": "Quegly",
+    "url": "https://quegly.com"
+  },
+  "homepage": "https://quegly.com/developers/mcp",
+  "repository": "https://github.com/quegly/agent",
+  "license": "MIT",
+  "keywords": ["social-media", "scheduling", "social-media-scheduler", "instagram", "tiktok", "youtube", "linkedin", "pinterest", "analytics", "mcp"],
+  "userConfig": {
+    "api_key": {
+      "type": "string",
+      "title": "Quegly API key",
+      "description": "Create one at quegly.com/settings/api. It starts with qgl_ and needs an active Quegly subscription.",
+      "sensitive": true,
+      "required": true
+    }
+  }
+}
